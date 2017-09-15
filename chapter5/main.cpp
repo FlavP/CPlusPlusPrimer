@@ -10,6 +10,15 @@
  *
  * Created on June 16, 2017, 6:20 PM
  */
+/*
+The new operator lets you request memory for a data object while a program is run-
+ning.The operator returns the address of the memory it obtains, and you can assign that
+address to a pointer.The only means to access that memory is to use the pointer. If the
+data object is a simple variable, you can use the dereferencing operator ( *) to indicate a
+value. If the data object is an array, you can use the pointer as if it were an array name to
+access the elements. If the data object is a structure, you can use the pointer dereferencing
+operator (->) to access structure members.
+ */
 
 #include <cstdlib>
 #include <iostream>
