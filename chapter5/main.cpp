@@ -120,7 +120,7 @@ int main() {
         cout << endl;
     }
     cout << "DONE" << endl;
-    */
+    
     string cela, cola;
     int four, five;
     cout << "Give me a name " << endl;
@@ -137,7 +137,19 @@ int main() {
     cout << cela << endl;
     cout << five << endl;   
     cout << cola << endl;
-    cout << four << endl;    
+    cout << four << endl; 
+    */
+    //mai jos e o chestie de notat, cum bagarray de stringuri
+    string months[3] = {"January", "February", "March"};
+    int years[3] = {2015, 2016, 2017};
+    float sales[3][3];
+    int i, j;
+    for(i = 0; i < 3; i++){
+        for(j = 0; j < 3; j++){
+            cout << "Sales for " << months[i] << " and " << years[j] << " are: ";
+            cin >> sales[i][j];
+        }
+    }
     return 0;
 }
 
