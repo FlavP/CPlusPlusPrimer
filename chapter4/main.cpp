@@ -32,6 +32,7 @@ struct peshte{
 //Read question 14 answer on page 1338, iti is really interesting
 
 int main() {
+    /*
     char suca[20];
     string waldo;
     double ted = 10000.1324;
@@ -52,8 +53,7 @@ int main() {
     *(prr + 9) = 100;
     cout << fishy.kind << endl;
     cout << *cioc << endl;
-    cout << triacle[9] << endl;
-    /*
+    cout << triacle[9] << endl;    
     cout << "How big is the array: " << endl;
     cin >> sizel;
     arr = new int[sizel];
@@ -96,7 +96,28 @@ int main() {
     stiuca->lenght = 15;
     stiuca->size = 10;
     cout << stiuca->kind << endl;
-    
+    /*
+    string firstname;
+    string lastname;
+    char grade;
+    cout << "What is your firstname: ";
+    getline(cin, firstname);
+    cout << "What is your lastname: ";
+    getline(cin, lastname);
+    */
+    char firstname[20];
+    char lastname[20];
+    char nameplus[40];
+    cout << "What is your firstname: ";
+    cin.get(firstname, 20).get();
+    cout << "What is your lastname: ";
+    cin.get(lastname, 20).get();     
+    //cout << "What is the grade: ";
+    //cin >> grade;
+    //grade += 1;
+    strcpy(nameplus, firstname);
+    strcat(nameplus, lastname);
+    cout << "Your name in a single string is: " << nameplus << endl;            
     return 0;
 }
 
