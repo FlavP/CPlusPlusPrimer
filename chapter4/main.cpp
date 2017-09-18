@@ -29,6 +29,12 @@ struct peshte{
     int lenght;
 };
 
+struct candyBar{
+    string nume;
+    int weight;
+    float calories;
+};
+
 //Read question 14 answer on page 1338, iti is really interesting
 
 int main() {
@@ -104,7 +110,7 @@ int main() {
     getline(cin, firstname);
     cout << "What is your lastname: ";
     getline(cin, lastname);
-    */
+    
     char firstname[20];
     char lastname[20];
     char nameplus[40];
@@ -117,7 +123,31 @@ int main() {
     //grade += 1;
     strcpy(nameplus, firstname);
     strcat(nameplus, lastname);
-    cout << "Your name in a single string is: " << nameplus << endl;            
+    cout << "Your name in a single string is: " << nameplus << endl; 
+    
+    string firstname;
+    string lastname;
+    string fullname;
+    cout << "What is your firstname: ";
+    getline(cin, firstname);    
+    cout << "What is your lastname: ";
+    getline(cin, lastname);
+    fullname = firstname + ' ' + lastname;
+    cout << "Your name in a single string is: " << fullname << endl;
+    
+    candyBar sweets[3];    
+    sweets[0].calories = 10.12;
+    sweets[0].weight = 250;
+    sweets[0].nume = "Mars mare negru";
+    cout << sweets[0].calories << " " << sweets[0].nume << endl;
+    */
+    vector <float> times(3);
+    cout << "First time: " << endl;
+    cin >> times[0];
+    cout << "Second time: " << endl;
+    cin >> times[1];
+    cout << "Third time: " << endl;
+    cin >> times[2];
     return 0;
 }
 
