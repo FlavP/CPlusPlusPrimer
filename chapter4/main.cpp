@@ -75,11 +75,28 @@ int main() {
         cout << "Elementul " << i + 1 << " are valoarea: " << other[i] << endl;
     }
     */
+    //the last character of every string is the null character '\0'
+    //char bird[11] = "Mr. Cheeps";
+    //char fish[] = "Bubbles";
+    //int arr_size = 20;
+    //char arr_name[arr_size];
+    //cin.getline(ar_name, arr_size) -> reads arr_size characters or until it
+    //encounters '\n' (new line), so it reads an entire line
+    //it does not save the new line
+    //also cin.get(), which is a variaton of getline, but it does not
+    //discard the new line, which can be tricky, if you have more cin.get()
+    //statements, so you can use a cin.get() to get rid of new lines
+    //cin.get(arr_name, arr_size).get();
+    //cin.clear() -> gets rid of empty lines
+    //string -> you can initialize a string, concatenate with '+'
+    //assing a string with another str1 = str2 -> valid
+    //instead of cin.getline(char_array, 20) you have getline(cin, string)
     peshte * stiuca = new peshte;
     strcpy(stiuca->kind, "stiuca");
     stiuca->lenght = 15;
     stiuca->size = 10;
     cout << stiuca->kind << endl;
+    
     return 0;
 }
 
