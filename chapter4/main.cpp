@@ -140,6 +140,9 @@ int main() {
     sweets[0].weight = 250;
     sweets[0].nume = "Mars mare negru";
     cout << sweets[0].calories << " " << sweets[0].nume << endl;
+     cin >> ch ommits spaces and new lines
+     cin.get(ch) does not, nor ch = cin.get, returning EOF
+     while((ch = cin.get()) != EOF) tests for EOF ctrl + Z or + D
     */
     vector <float> times(3);
     cout << "First time: " << endl;
