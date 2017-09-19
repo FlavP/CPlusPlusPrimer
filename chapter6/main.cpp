@@ -61,15 +61,14 @@ int main() {
             result = "game";
             break;  
 }
-    cout << "A maple is a " << result << endl;
-     
+    cout << "A maple is a " << result << endl;     
     int structSize = 3;
     bop *bulop = new bop[structSize];
     char cf;
     cout << "a. display by name" << '\t' << "b. display by title" << endl;
     cout << "c. display by bopname" << '\t' << "d. display by preference" << endl;
     cout << "q. quit";
-    cin >> cf;
+    cf = cin.get();
     bulop[0].fullname = "Ion Ionescu";
     bulop[0].title = "Om al muncii";
     bulop[0].bopname = "Blion Bulion";
@@ -115,7 +114,7 @@ int main() {
         }
     }
     delete bulop;
-    
+    /*
     ofstream Filolel;
     ifstream readFile;
     string filename = "file1.txt";
@@ -169,7 +168,7 @@ int main() {
         cout << "Enter donor " << i+1 << " donation " << endl;
         cin >> (organe+i)->amount;
     }
-    */
+    
     ifstream readOne;
     int noDonors;
     string name;
@@ -194,6 +193,53 @@ int main() {
     cout << "Restul de " << noDonors - donation << " sunt niste saraci" << endl;
     delete organe;
     readOne.close();
+    */
+    ofstream outputFile;
+    ifstream inputFile;
+    int nodonors;
+    cout << "How many donors? ";
+    cin >> nodonors;
+    cin.clear();
+    donors * don = new donors[nodonors];
+    outputFile.open("donations.txt");
+    for(int i = 0; i < nodonors; i++){
+       cin.ignore();
+       cout << "The name of the donor is: " << endl;
+       getline(cin, (don + i)->name);
+       cout << "The amount of money donated by " << (don + i)->name << " is: ";
+       cin >> (don + i)->amount;
+       if(outputFile.is_open())
+           outputFile << (don + i)->name << '\t' << (don + i)->amount << endl;
+    }
+    delete don;
+    outputFile.close();
+    inputFile.open("donations.txt");
+    if(!inputFile.is_open()){
+        cout << "Could not open the file" << endl;
+        exit(EXIT_FAILURE);
+    }
+    int count = 0;
+    while(inputFile.good()){
+    ++count;
+    }
+    if(inputFile.eof()){
+        cout << "End of file reached" << endl;
+    }
+    else if(inputFile.fail()){
+        cout << "Input terminated by data mismatch" << endl;
+    }
+    else{
+        cout << "Input terminated for unknown reason" << endl;
+    }
+    donors *receive = new donors[count];
+    for(int i = 0; i < count; i++){
+        inputFile >> (receive + i)->amount;
+        getline(inputFile, (receive + i)->name);
+        cout << (receive + i)->name << " donated " 
+                << (receive + i)->amount << endl;
+    }
+    delete receive;
+    inputFile.close();
     return 0;
 }
 
