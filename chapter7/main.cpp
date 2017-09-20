@@ -685,7 +685,7 @@ void display3(const student pa[], int n){
         cout << "Student ooplevel is: " << pa[i].ooplevel << endl;
     }
 }
-*/
+
 
 double add(double x, double y);
 double subtract(double x, double y);
@@ -710,4 +710,35 @@ double add(double x, double y){
 
 double calculate(double x, double y, double p(double, double)){
     return (*p)(x, y);
+}
+*/
+using namespace std;
+int replace(char *str, char ch1, char ch2);
+
+int main(){
+    char *str;
+    char ch1, ch2, chr[15];
+    cout << "Enter a string: ";
+    cin >> chr;
+    str = chr;
+    ch1 = 'o';
+    ch2 = 'u';
+    int count = replace(str, ch1, ch2);
+    for(int i=0; i < sizeof(str); i++){
+        cout << str[i];
+    }
+    cout << endl;
+    cout << "Number of replaces: " << count << endl;
+}
+
+int replace(char *str, char ch1, char ch2){
+    int count = 0;
+    for(int i = 0; str[i] != '\0'; i++){
+        //cout << str[i] << endl;
+        if(str[i] == ch1){
+            str[i] = ch2;
+            count++;
+        }
+    }
+    return count;
 }
