@@ -11,6 +11,8 @@
  * Created on September 26, 2017, 12:25 PM
  */
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 #include "string12.h"
 
 using namespace std;
@@ -47,16 +49,30 @@ int main() {
         }
         int shorty = 0;
         int first = 0;
-        for(i = 0; i < total; i++){
+        String12 *shortest = &quotes[0];
+        String12 *firstone = &quotes[0];
+        /*for(i = 0; i < total; i++){
             if(quotes[i].length() < quotes[shorty].length())
                 shorty = i;
             if(quotes[i] < quotes[first])
                 first = i;
         }
-    cout << "Shortest quote: " << quotes[shorty] << endl;
-    cout << "First alphabetically: " << quotes[first] << endl;  
+         */
+        for(i = 1; i < total; i++){
+            if(quotes[i].length() < shortest->length())
+                shortest = &quotes[i];
+            if(quotes[i] < *firstone)
+                firstone = &quotes[i];
+        }
+    cout << "Shortest quote: " << *shortest << endl;
+    cout << "First alphabetically: " << *firstone << endl;  
+    srand(time(0));
+    int randi = rand() % total;
+    String12 * favo = new String12(quotes[randi]);
     cout << "The program used: " << String12::LengthOf()
             << " string objects" <<endl;
+    cout << "My favourite quote is: " << *favo << endl;
+    delete favo;
     }
     else
         cout << "No input, bye!\n";
