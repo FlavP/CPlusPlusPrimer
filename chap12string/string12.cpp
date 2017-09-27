@@ -8,6 +8,10 @@
 
 int String12::num_of_strings = 0;
 
+int String12::LengthOf(){
+    return num_of_strings;
+}
+
 String12::String12(const char* s){
     std::cout << "Constructor in action\n";
     len = std::strlen(s) + 1;

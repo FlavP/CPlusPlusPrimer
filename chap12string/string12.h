@@ -35,7 +35,7 @@ public:
     friend std::istream & operator>>(std::istream & is, String12 & str);
     char & operator[](int i);
     const char & operator[](int i) const;
-    static int LengthOf() {return num_of_strings;}
+    static int LengthOf();
 };
 
 #endif /* STRING12_H */

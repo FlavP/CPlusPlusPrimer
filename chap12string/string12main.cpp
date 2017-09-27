@@ -32,7 +32,7 @@ int main() {
     for(i = 0; i < ArSize; i++){
         cout << i + 1 << ": ";
         cin.get(temp, CINLEN);
-        while(cin.get() && cin.get() != '\n')
+        while(cin && cin.get() != '\n')
             continue;
         if(!cin || temp[0] == '\0')
             break;
@@ -43,7 +43,7 @@ int main() {
     if(total > 0){
         cout << "Here are your quotes: \n";
         for(i = 0; i < total; i++){
-            cout << quotes[i][0] << ": " << quotes[i];
+            cout << quotes[i][0] << ": " << quotes[i] << endl;
         }
         int shorty = 0;
         int first = 0;
