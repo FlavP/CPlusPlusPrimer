@@ -19,15 +19,17 @@ String12::String12(const char* s){
     str = new char[len];
     std::strcpy(str, s);
     num_of_strings++;
+    std::cout << "Object is " << str << "\n";
     std::cout << "Current number of strings is: " << num_of_strings << "\n";
 }
 
 String12::String12(){
     std::cout << "Default constructor called\n";
-    len = 4;
     str = new char[1];
+    len = 4;
     str[0] = '\0';
     num_of_strings++;
+    std::cout << "Current number of strings is: " << num_of_strings << "\n";
 }
 
 String12::String12(const String12 & st){
@@ -35,12 +37,14 @@ String12::String12(const String12 & st){
     len = st.len + 1;
     str = new char[len + 1];
     std::strcpy(str, st.str);
+    std::cout << "Object is " << str << "\n";
     std::cout << "Object created " << num_of_strings << " available\n";
 }
 
 String12::~String12(){
     std::cout << "Default destructor called\n";
-    num_of_strings--;
+    std::cout << "Object distroyed is " << str << "\n";
+    --num_of_strings;
     delete [] str;
     std::cout << "Current number of strings left is: " << num_of_strings << "\n";    
 }
@@ -55,7 +59,7 @@ String12 & String12::operator =(const String12 & st){
         return *this;
     }
     delete [] str;
-    len = std::strlen(st.str) + 1;
+    len = st.len + 1;
     str = new char[len];
     std::strcpy(str, st.str);
     return *this;
@@ -99,29 +103,21 @@ std::istream & operator>>(std::istream & is, String12 & st){
     return is;
 }
 
-String12 String12::operator +(const String12& s) const{
-    int i = len + s.len + 1;
+String12 String12::operator +(const String12& s){
     String12 gigel;
-    std::strcat(gigel.str, str);
-    std::strcat(gigel.str, s.str);
-    gigel.len = i;
+    gigel.len = len + s.len + 1;
+    std::strcpy(gigel.str, str);
+    std::strcat(str, s.str);
     return gigel;
 }
 
 String12 operator+(const char *ch, const String12 & ustr){
-    int lengthch = 0;
-    while(*ch != '\0'){
-        lengthch++;
-        ch++;
-    }
-    int i = lengthch + ustr.len + 1;
-    char ajut[lengthch];
-    for(int j = 0; j < lengthch; j++){
-        ajut[j] = ch[j];
-    }
+    int lengthch = std::strlen(ch);
+    char ajut[lengthch + 1];
+    std::strcpy(ajut, ch);
+    int i = lengthch + ustr.len + 1;  
     String12 gigel;
-    ajut[lengthch] = '\0';
-    std::strcat(gigel.str, ajut);
+    std::strcpy(gigel.str, ajut);
     std::strcat(gigel.str, ustr.str);
     gigel.len = i;
     return gigel;    
@@ -131,20 +127,22 @@ void String12::stringlow(){
     char * ch = &str[0];
     while(*ch != '\0'){
         if(std::isalpha(*ch)){
-            *ch = std::tolower(*ch);
+            std::cout << *ch;
         }
         ch++;
     }
 }
 
 void String12::stringup(){
+    //std::cout << "Sunt in stringup";
     char * ch = &str[0];
     while(*ch != '\0'){
         if(std::isalpha(*ch)){
-            *ch = std::toupper(*ch);
+            std::toupper(*ch);
         }
         ch++;
     }
+    std::cout << str;
 }
 
 int String12::howMany(char ch){

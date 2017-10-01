@@ -87,13 +87,20 @@ int main() {
 int main(){
     String12 s1(" and I am a C++ student");
     String12 s2 = "Please enter your name: ";
+    
     String12 s3;
     cout << s2;
     cin >> s3;
+    cout << s3;
+    
     s2 = "My name is " + s3;
-    cout << s2 << ".\n";
-    s2 = s2 + s1;
+    //cout << s2;
+        
+    s2 + s1;
+    cout << s2;
+    /*
     s2.stringup();
+    
     cout << "The string\n" << s2 << "\ncontains " << s2.howMany('A')
             << " 'A' characters in it.\n";
     s1 = "red";
@@ -116,5 +123,6 @@ int main(){
             cout << "Try again!\n";
     }
     cout << "Bye\n";
+     */
     return 0;
 }

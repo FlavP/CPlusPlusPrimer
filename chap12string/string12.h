@@ -31,7 +31,7 @@ public:
     void stringlow();
     void stringup();
     int howMany(char ch);
-    String12 operator+(const String12 & s) const;
+    String12 operator+(const String12 & s);
     friend std::ostream & operator<<(std::ostream & os, const String12 & str);
     friend bool operator>(const String12 & s1, const String12 & s2);
     friend bool operator<(const String12 & s1, const String12 & s2);
