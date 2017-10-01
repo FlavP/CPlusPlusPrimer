@@ -14,14 +14,14 @@ GREP=grep
 NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
-CC=gcc-5
-CCC=g++-5
-CXX=g++-5
+CC=gcc
+CCC=g++
+CXX=g++
 FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=GNU-Linux
+CND_PLATFORM=GNU-Linux-x86
 CND_DLIB_EXT=so
 CND_CONF=Release
 CND_DISTDIR=dist
@@ -63,12 +63,12 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/chap12string: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/chap12string ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/string12.o: string12.cpp
+${OBJECTDIR}/string12.o: string12.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/string12.o string12.cpp
 
-${OBJECTDIR}/string12main.o: string12main.cpp
+${OBJECTDIR}/string12main.o: string12main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/string12main.o string12main.cpp
@@ -79,6 +79,7 @@ ${OBJECTDIR}/string12main.o: string12main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/chap12string
 
 # Subprojects
 .clean-subprojects:

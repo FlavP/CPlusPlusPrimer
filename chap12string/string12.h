@@ -28,11 +28,16 @@ public:
     int length() const {return len; }      
     String12 & operator=(const String12 & st);
     String12 & operator=(const char * ch);
+    void stringlow();
+    void stringup();
+    int howMany(char ch);
+    String12 operator+(const String12 & s) const;
     friend std::ostream & operator<<(std::ostream & os, const String12 & str);
     friend bool operator>(const String12 & s1, const String12 & s2);
     friend bool operator<(const String12 & s1, const String12 & s2);
     friend bool operator==(const String12 & s1, const String12 & s2);
     friend std::istream & operator>>(std::istream & is, String12 & str);
+    friend String12 operator+(const char * ch, const String12 & ustr);
     char & operator[](int i);
     const char & operator[](int i) const;
     static int LengthOf();

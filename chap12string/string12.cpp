@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 #include <cstring>
+#include <cctype>
 #include "string12.h"
 
 int String12::num_of_strings = 0;
@@ -96,4 +97,64 @@ std::istream & operator>>(std::istream & is, String12 & st){
     while(is && is.get() != '\n')
         continue;
     return is;
+}
+
+String12 String12::operator +(const String12& s) const{
+    int i = len + s.len + 1;
+    String12 gigel;
+    std::strcat(gigel.str, str);
+    std::strcat(gigel.str, s.str);
+    gigel.len = i;
+    return gigel;
+}
+
+String12 operator+(const char *ch, const String12 & ustr){
+    int lengthch = 0;
+    while(*ch != '\0'){
+        lengthch++;
+        ch++;
+    }
+    int i = lengthch + ustr.len + 1;
+    char ajut[lengthch];
+    for(int j = 0; j < lengthch; j++){
+        ajut[j] = ch[j];
+    }
+    String12 gigel;
+    ajut[lengthch] = '\0';
+    std::strcat(gigel.str, ajut);
+    std::strcat(gigel.str, ustr.str);
+    gigel.len = i;
+    return gigel;    
+}
+
+void String12::stringlow(){
+    char * ch = &str[0];
+    while(*ch != '\0'){
+        if(std::isalpha(*ch)){
+            *ch = std::tolower(*ch);
+        }
+        ch++;
+    }
+}
+
+void String12::stringup(){
+    char * ch = &str[0];
+    while(*ch != '\0'){
+        if(std::isalpha(*ch)){
+            *ch = std::toupper(*ch);
+        }
+        ch++;
+    }
+}
+
+int String12::howMany(char ch){
+    int counter = 0;
+        char * pch = &str[0];
+    while(*pch != '\0'){
+        if(*pch == ch){
+            counter++;
+        }
+        pch++;
+    }
+    return counter;
 }

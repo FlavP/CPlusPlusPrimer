@@ -19,7 +19,7 @@ using namespace std;
 
 /*
  * 
- */
+
 const int ArSize = 10;
 const int CINLEN = 81;
 int main() {
@@ -51,13 +51,10 @@ int main() {
         int first = 0;
         String12 *shortest = &quotes[0];
         String12 *firstone = &quotes[0];
-        /*for(i = 0; i < total; i++){
-            if(quotes[i].length() < quotes[shorty].length())
-                shorty = i;
-            if(quotes[i] < quotes[first])
-                first = i;
-        }
-         */
+ * 
+ * 
+ * 
+ * 
         for(i = 1; i < total; i++){
             if(quotes[i].length() < shortest->length())
                 shortest = &quotes[i];
@@ -78,4 +75,46 @@ int main() {
         cout << "No input, bye!\n";
     return 0;
 }
+ */
+        /*for(i = 0; i < total; i++){
+            if(quotes[i].length() < quotes[shorty].length())
+                shorty = i;
+            if(quotes[i] < quotes[first])
+                first = i;
+        }
+         */
 
+int main(){
+    String12 s1(" and I am a C++ student");
+    String12 s2 = "Please enter your name: ";
+    String12 s3;
+    cout << s2;
+    cin >> s3;
+    s2 = "My name is " + s3;
+    cout << s2 << ".\n";
+    s2 = s2 + s1;
+    s2.stringup();
+    cout << "The string\n" << s2 << "\ncontains " << s2.howMany('A')
+            << " 'A' characters in it.\n";
+    s1 = "red";
+    String12 rgb[3] = {String12(s1), String12("green"), String12("blue")};
+    cout << "Enter the name of a primary color: ";
+    String12 ans;
+    bool success = false;
+    while(cin >> ans){
+        ans.stringlow();
+        for(int i = 0; i < 3; i++){
+            if(ans == rgb[i]){
+                cout << "That is right!\n";
+                success = true;
+                break;
+            }
+        }
+        if(success)
+            break;
+        else
+            cout << "Try again!\n";
+    }
+    cout << "Bye\n";
+    return 0;
+}
