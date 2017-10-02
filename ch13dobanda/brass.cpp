@@ -77,6 +77,7 @@ BrassPlus::BrassPlus(const Brass & brra, double ml, double r) : Brass(brra){
 void BrassPlus::ViewAccount() const{
     format initi = setForm();
     precizie preci = cout.precision(2);
+    Brass::ViewAccount();
     cout << "Maximum Overdraft: " << maxAmount << endl;
     cout << "Current Overdraft: " << overDraft << endl;    
     cout.precision(3);
