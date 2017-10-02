@@ -104,16 +104,35 @@ std::istream & operator>>(std::istream & is, String12 & st){
 }
 
 String12 String12::operator +(const String12& s){
+    /*
     String12 gigel;
     gigel.len = len + s.len + 1;
     std::strcpy(gigel.str, str);
     std::strcat(str, s.str);
     return gigel;
+    
+    len = len + s.len + 1;
+    char * ajut = new char[len];
+    std::strcpy(ajut, str);
+    String12 gigel;
+    std::strcpy(gigel.str, ajut);
+    std::strcat(gigel.str, s.str);
+    gigel.len = len;
+    return gigel;
+    */
+    len = len + s.len + 1;
+    char * ajut = new char[len];
+    std::strcpy(ajut, str);
+    delete [] str;
+    str = new char[len];
+    std::strcpy(str, ajut);
+    std::strcat(str, s.str);
+    return *this;
 }
 
 String12 operator+(const char *ch, const String12 & ustr){
     int lengthch = std::strlen(ch);
-    char ajut[lengthch + 1];
+    char * ajut = new char[lengthch + 1];
     std::strcpy(ajut, ch);
     int i = lengthch + ustr.len + 1;  
     String12 gigel;
@@ -125,22 +144,25 @@ String12 operator+(const char *ch, const String12 & ustr){
 
 void String12::stringlow(){
     char * ch = &str[0];
+    int i = 0;
     while(*ch != '\0'){
         if(std::isalpha(*ch)){
-            std::cout << *ch;
+            str[i] = std::tolower(*ch);
         }
         ch++;
+        i++;
     }
 }
 
 void String12::stringup(){
-    //std::cout << "Sunt in stringup";
     char * ch = &str[0];
+    int i = 0;
     while(*ch != '\0'){
         if(std::isalpha(*ch)){
-            std::toupper(*ch);
+            str[i] = std::toupper(*ch);
         }
         ch++;
+        i++;
     }
     std::cout << str;
 }

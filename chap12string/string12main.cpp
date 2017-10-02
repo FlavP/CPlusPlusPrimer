@@ -94,11 +94,9 @@ int main(){
     cout << s3;
     
     s2 = "My name is " + s3;
-    //cout << s2;
         
-    s2 + s1;
-    cout << s2;
-    /*
+    s2 = s2 + s1;
+    
     s2.stringup();
     
     cout << "The string\n" << s2 << "\ncontains " << s2.howMany('A')
@@ -123,6 +121,6 @@ int main(){
             cout << "Try again!\n";
     }
     cout << "Bye\n";
-     */
+     
     return 0;
 }
