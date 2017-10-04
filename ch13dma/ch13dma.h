@@ -33,7 +33,7 @@ private:
     enum {COL_LEN = 40};
     char color[COL_LEN];
 public:
-    lacksDMA(const char * ch = "blank", const char * ch = "null",
+    lacksDMA(const char * ch = "blank", const char * l = "null",
             int r = 0);
     lacksDMA(const char * ch, const baseDMA & ctrefdma);
     friend std::ostream & operator<<(std::ostream & os, 
