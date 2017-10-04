@@ -41,8 +41,8 @@ public:
 };
 
 class hasDMA : public baseDMA{
-public:
-    char *ch;
+private:
+    char *style;
 public:
     hasDMA(const char * s = "none", const char * l = "null", int r = 0);
     hasDMA(const char * s, const baseDMA & ctrefdma);
