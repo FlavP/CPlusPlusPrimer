@@ -20,15 +20,16 @@ private:
     char * label;
     int selections; // number of selections
     double playtime; // playing time in minutes
-    int lenper;
     int lenlab;
+    int lenper;
 public:
-    Cd(char * s1, char * s2, int n, double x);
+    Cd(const char * s1 = "No name",const char * s2 = "No album", 
+            int n = 0, double x = 0.0);
     Cd(const Cd & d);
     Cd();
     virtual ~Cd();
     virtual void Report() const; // reports all CD data
-    virtual Cd & operator=(const Cd & d);
+    Cd & operator=(const Cd & d);
 };
 
 class Classic : public Cd{
@@ -36,11 +37,14 @@ private:
     char * primary;
     int lenprim;
 public:
-    Classic(char *s1, char *s2, int n, double x,  char *s3) : Cd(s1, s2, n, x){}
-    Classic(const Cd & d, char *s3) : Cd(d){}
+    Classic(const char* s1 = "No name", const char* s2 = "No album", 
+            const char* s3 = "No primary" , int n = 0, double x = 0.0);
+    Classic(const char* s1, const Cd & d);
+    Classic(const Classic & cl);
     Classic();
+    ~Classic();
     virtual void Report() const;
-    virtual Classic & operator=(const Classic & cl);
+    Classic & operator=(const Classic & cl);
 };
 
 #endif /* CDS_H */

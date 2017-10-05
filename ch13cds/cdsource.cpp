@@ -5,16 +5,16 @@
  */
 
 #include <iostream>
-#include <string>
+#include <cstring>
 #include "cds.h"
 
 using namespace std;
 
-Cd::Cd(char* s1, char* s2, int n, double x){
+Cd::Cd(const char* s1, const char* s2, int n, double x){
     lenper = strlen(s1) + 1;
     lenlab = strlen(s2) + 1;
     performers = new char[lenper];
-    label = new char[label];
+    label = new char[lenlab];
     strcpy(performers, s1);
     performers[lenper] = '\0'; 
     strcpy(label, s2);
@@ -42,7 +42,7 @@ void Cd::Report() const{
 }
 
 Cd & Cd::operator =(const Cd& d){
-    if(this == d)
+    if(this == &d)
         return *this;
     delete [] performers;
     delete [] label;
@@ -59,21 +59,47 @@ Cd & Cd::operator =(const Cd& d){
     return *this;
 }
 
+Cd::Cd(){
+    int len = 4;
+    lenper = 0;
+    lenlab = 0;
+    performers = new char[len];
+    label = new char[len];
+    performers = "oae";
+    label = "bee";
+    selections = 0;
+    playtime = 0.0;
+}
+
 Cd::~Cd(){
     delete [] performers;
     delete [] label;
 }
 
-Classic::Classic(char* s1, char* s2, int n, double x, char* s3)
-: Cd(s1, s2, n, x){
-    lenprim = strlen(s3);
-    strcpy(primary, s3);
+Classic::Classic(const char* s1, const char* s2, const char* s3 , int n, double x)
+: Cd(s2, s3, n, x){
+    lenprim = strlen(s1);
+    strcpy(primary, s1);
 }
 
-Classic::Classic(const Cd& d, char* s3) : Cd(d){
-    lenprim = strlen(s3);    
+Classic::Classic(const char* s1, const Cd & d) : Cd(d){
+    lenprim = strlen(s1);    
     primary = new char [lenprim];    
-    strcpy(primary, s3);
+    strcpy(primary, s1);
+}
+
+Classic::Classic(const Classic& cl) : Cd(cl){
+    lenprim = strlen(cl.primary);    
+    primary = new char [lenprim];    
+    strcpy(primary, cl.primary);
+}
+
+Classic::Classic(){
+    Cd::Cd();
+    int len = 4;
+    lenprim = 0;
+    primary = new char[len];
+    primary = "alo";
 }
 
 void Classic::Report() const{
@@ -83,7 +109,7 @@ void Classic::Report() const{
 
 Classic & Classic::operator =(const Classic& cl){
     int i;
-    if(this == cl)
+    if(this == &cl)
         return *this;
     Cd::operator =(cl);
     delete [] primary;
@@ -92,4 +118,8 @@ Classic & Classic::operator =(const Classic& cl){
     primary[lenprim] = '\0';     
     strcpy(primary, cl.primary);
     return *this;
+}
+
+Classic::~Classic(){
+    delete [] primary;
 }
