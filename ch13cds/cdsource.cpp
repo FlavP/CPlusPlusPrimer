@@ -44,18 +44,18 @@ void Cd::Report() const{
 Cd & Cd::operator =(const Cd& d){
     if(this == d)
         return *this;
-    return 
-    int i;
-    for(i = 0; i < strlen(performers); i++)
-        performers[i] = '';
-    performers[strlen(d.performers)] = '\0';
-    for(i = 0; i < strlen(label); i++)
-        label[i] = '';
-    label[strlen(d.label)] = '\0'; 
+    delete [] performers;
+    delete [] label;
+    lenper = strlen(d.performers) + 1;
+    lenlab = strlen(d.label) + 1;   
+    performers = new char [lenper];
+    label = new char[lenlab];
     strcpy(performers, d.performers);
     strcpy(label, d.label);
+    performers[lenper] = '\0';
+    label[lenlab] = '\0';
     selections = d.selections;
-    playtime = d.playtime;
+    playtime = d.playtime;       
     return *this;
 }
 
@@ -66,10 +66,13 @@ Cd::~Cd(){
 
 Classic::Classic(char* s1, char* s2, int n, double x, char* s3)
 : Cd(s1, s2, n, x){
+    lenprim = strlen(s3);
     strcpy(primary, s3);
 }
 
 Classic::Classic(const Cd& d, char* s3) : Cd(d){
+    lenprim = strlen(s3);    
+    primary = new char [lenprim];    
     strcpy(primary, s3);
 }
 
@@ -83,9 +86,10 @@ Classic & Classic::operator =(const Classic& cl){
     if(this == cl)
         return *this;
     Cd::operator =(cl);
-    for(i = 0; i < strlen(primary); i++)
-        primary[i] = '';
-    primary[strlen(cl.primary)] = '\0';     
+    delete [] primary;
+    lenprim = strlen(cl.primary) + 1;    
+    primary = new char[lenprim];
+    primary[lenprim] = '\0';     
     strcpy(primary, cl.primary);
     return *this;
 }
