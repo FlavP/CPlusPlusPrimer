@@ -58,19 +58,19 @@ Cd & Cd::operator =(const Cd& d){
     playtime = d.playtime;       
     return *this;
 }
-
+/*
 Cd::Cd(){
     int len = 4;
     lenper = 0;
     lenlab = 0;
     performers = new char[len];
     label = new char[len];
-    performers = "oae";
-    label = "bee";
+    performers[0] = '\0';
+    label[0] = '\0';
     selections = 0;
     playtime = 0.0;
 }
-
+*/
 Cd::~Cd(){
     delete [] performers;
     delete [] label;
@@ -79,6 +79,7 @@ Cd::~Cd(){
 Classic::Classic(const char* s1, const char* s2, const char* s3 , int n, double x)
 : Cd(s2, s3, n, x){
     lenprim = strlen(s1);
+    primary = new char[lenprim];
     strcpy(primary, s1);
 }
 
@@ -93,16 +94,16 @@ Classic::Classic(const Classic& cl) : Cd(cl){
     primary = new char [lenprim];    
     strcpy(primary, cl.primary);
 }
-
+/*
 Classic::Classic(){
-    Cd::Cd();
     int len = 4;
     lenprim = 0;
     primary = new char[len];
-    primary = "alo";
+    primary[0] = '\0';
 }
-
+*/
 void Classic::Report() const{
+    cout << "Report" << endl;
     Cd::Report();
     cout << "Primary composition: " << primary << endl;
 }

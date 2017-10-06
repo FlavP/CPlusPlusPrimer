@@ -26,7 +26,7 @@ public:
     Cd(const char * s1 = "No name",const char * s2 = "No album", 
             int n = 0, double x = 0.0);
     Cd(const Cd & d);
-    Cd();
+//    Cd();
     virtual ~Cd();
     virtual void Report() const; // reports all CD data
     Cd & operator=(const Cd & d);
@@ -41,7 +41,7 @@ public:
             const char* s3 = "No primary" , int n = 0, double x = 0.0);
     Classic(const char* s1, const Cd & d);
     Classic(const Classic & cl);
-    Classic();
+   // Classic();
     ~Classic();
     virtual void Report() const;
     Classic & operator=(const Classic & cl);
