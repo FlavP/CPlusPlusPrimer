@@ -23,7 +23,7 @@ private:
     string name;
     string message;
 public:
-    AbcDMA(const string & s1, const string & s2);
+    AbcDMA(const string & s1="No name", const string & s2="No message");
     AbcDMA(const AbcDMA & aby);
     virtual ~AbcDMA(){}
     virtual void ShowDMA() const = 0;
@@ -36,7 +36,8 @@ class BaseDMA : public AbcDMA{
 private:
     string inplus;
 public:
-    BaseDMA(const string &inplus, const string & s1, const string & s2);
+    BaseDMA(const string &inplus="No plus", const string & s1="No name", 
+            const string & s2="No message");
     BaseDMA(const string &inplus, const AbcDMA & abi);
     virtual ~BaseDMA(){}
     virtual void ShowDMA() const;
@@ -47,8 +48,8 @@ class HasDMA : public BaseDMA{
 private:
     string inminus;
 public:
-    HasDMA(const string & inminus, const string & inplus, const string & s1,
-            const string & s2);
+    HasDMA(const string & inminus="No simbol", const string & inplus="No plus", 
+            const string & s1="No name", const string & s2="No message");
     HasDMA(const string & inminus, const BaseDMA & babi);
     virtual ~HasDMA(){}
     virtual void ShowDMA() const;
