@@ -14,15 +14,30 @@
 #ifndef CH15TV_H
 #define CH15TV_H
 
+class Remote{
+private:
+    int mode;
+public:
+    Remote(int m = Tv::TV) : mode(m) {}
+    bool volup(Tv & t){return t.volup();}
+    bool voldown(Tv & t){return t.voldown();}
+    void onoff(Tv & t){t.onoff();}
+    void channup(Tv & t){t.channup();}
+    void chandown(Tv & t){t.chandown();}
+    void set_mode(Tv & t){t.set_mode();}
+    void set_intput(Tv & t){t.set_input();}
+    void set_chan(Tv & t, int c);
+};
+
+
 class Tv
 {
 public:
-    friend class Remote;
     enum {On, Off};
     enum {MinVol, MaxVol = 20};
     enum {Antenna, Cable};
     enum {TV, DVD};
-    
+    friend void Remote::set_chan(Tv & t, int c){t.channel = c;}
     Tv(int s = Off, int mc = 125) : state(s), volume(5),
     maxchannel(mc), channel(2), mode(Cable), input(TV) {}
     void onoff() {state = (state == On) ? Off : On;}
@@ -43,20 +58,6 @@ private:
     int channel;
 };
 
-class Remote{
-private:
-    int mode;
-public:
-    Remote(int m = Tv::TV) : mode(m) {}
-    bool volup(Tv & t){return t.volup();}
-    bool voldown(Tv & t){return t.voldown();}
-    void onoff(Tv & t){t.onoff();}
-    void channup(Tv & t){t.channup();}
-    void chandown(Tv & t){t.chandown();}
-    void set_chan(Tv & t, int c){t.channel = c;}
-    void set_mode(Tv & t){t.set_mode();}
-    void set_intput(Tv & t){t.set_input();}
-};
 
 #endif /* CH15TV_H */
 
