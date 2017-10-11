@@ -43,11 +43,12 @@ public:
 template <class Item>
 Queue<Item>::Queue(int qs) : qsize(qs){
     front = rear = 0;
+    items = 0;
 }
 
 template <typename Item>
 Queue<Item>::~Queue(){
-    Node temp;
+    Node *temp;
     while(front != 0){
         temp = front;
         front = front->next;
@@ -59,9 +60,9 @@ template<typename Item>
 bool Queue<Item>::enqueue(const Item& item){
     if(isfull())
         return false;
-    Node * add = new Node; //create node
+    Node * add = new Node(item); //create node
     items++; // increase number of items
-    if(front->next == 0) // if front points to 0
+    if(front == 0) // if front points to 0
         front = add;// place node at front
     else
         rear->next = add; // place at rear
@@ -73,9 +74,14 @@ template<typename Item>
 bool Queue<Item>::dequeue(Item& item){
     if(isempty())
         return false;
-    Node * temp = front;
-    temp = front;
+    item = front->item; // set item to first item in queue
     items--;    
+    Node * temp = front; // save location of first element
+    front = front->next; // reset front to next item
+    delete temp; // delete former first item
+    if(items == 0)
+        rear = 0;
+    return true;
 }
 #endif /* QUEUE_H */
 
