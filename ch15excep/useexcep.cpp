@@ -13,6 +13,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <cmath>
 #include "badharm.h"
 
 using namespace std;
@@ -37,12 +38,28 @@ int main() {
             cout << "Enter additional two numbers or q to <quit>: " << endl;
         }catch(bad_hmean & w1){
             w1.err_msg();
-            cout << "Not good.\n";
+            cout << "Not good. Try again\n";
+            continue;
         }catch(bad_gmean & w2){
-            w2.err_msg();
-            cout << "Try again.\n";
+            cout << w2.err_msg();
+            cout << "That's it.\n";
+            break;
         }
     }
     return 0;
 }
 
+double hmean(double a, double b){
+    if(a == -b){
+        throw(bad_hmean(a, b));
+    }else{
+        return 2.0 * a * b/(a + b);
+    }
+}
+
+double gmean(double a, double b){
+    if(a < 0 || b < 0)
+        throw(bad_gmean(a, b));
+    else
+        return std::sqrt(a * b);
+}
