@@ -16,6 +16,7 @@
 
 #include <stdexcept>
 #include <string>
+#include <iostream>
 
 class Sales{
 public:
@@ -27,11 +28,11 @@ public:
         explicit bad_index(int smh, 
                 const std::string & s = "Sales have a bad index number\n");
         int return_bad_index() const {return bi;}
-        virtual ~bad_index() throw(){}
+        virtual ~bad_index() throw() {}
     };
     Sales(int yy = 0);
     Sales(int yy, const double * gr, int n);
-    virtual ~Sales();
+    virtual ~Sales() {};
     int ret_year(){return year;}
     virtual double operator[](int i) const;
     virtual double & operator[](int i);
@@ -49,12 +50,12 @@ public:
             nbad_index(const std::string & lbl, int smh,
                     const std::string & s = "Labeled sales have a bad index\n");
             const std::string & ret_label(){return label;}
-            virtual ~nbad_index() throw();
+            virtual ~nbad_index() throw() {}
     };
     explicit LabeledSales(const std::string & str = "none", int yy = 0);
     LabeledSales(const std::string & lbl, int yy, const double * gr, int n);
-    virtual ~LabeledSales();
-    const std::string & return_label(){return label;}
+    virtual ~LabeledSales() {};
+    const std::string & return_label() const {return label;}
     virtual double operator[](int i) const;
     virtual double & operator[](int i);
 private:

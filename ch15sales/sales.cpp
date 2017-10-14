@@ -20,7 +20,7 @@ Sales::Sales(int yy){
 }
 
 Sales::Sales(int yy, const double* gruob, int n){
-    int year = yy;
+    year = yy;
     int lim = (n < MONTHS) ? n : MONTHS;
     int i;
     for(i = 0; i < n; ++i)
@@ -35,7 +35,7 @@ double Sales::operator [](int i) const{
     return gr[i];
 }
 
-double Sales::operator [](int i){
+double & Sales::operator [](int i){
     if(i <= 0 || i > MONTHS)
         throw bad_index(i);
     return gr[i];
@@ -57,12 +57,12 @@ LabeledSales::LabeledSales(const std::string& lbl, int yy,
 
 double LabeledSales::operator [](int i) const{
     if(i <= 0 || i > MONTHS)
-        throw nbad_index(nbad_index::ret_label(), i);
+        throw nbad_index(return_label(), i);
     return Sales::operator [](i);
 }
 
 double & LabeledSales::operator [](int i){
     if(i <= 0 || i > MONTHS)
-        throw nbad_index(nbad_index::ret_label(), i);
+        throw nbad_index(return_label(), i);
     return Sales::operator [](i);
 }
