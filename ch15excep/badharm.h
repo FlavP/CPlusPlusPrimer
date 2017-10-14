@@ -18,33 +18,46 @@
 #include <stdexcept>
 
 
-class bad_hmean : public std::logic_error{
-private:
-    double v1, v2;
+class bad_mean : public std::logic_error{
+    private:
+        double v1, v2;
+    public:
+        bad_mean(double a, double b, const std::string & st = "Bad mean") 
+                : v1(a), v2(b), std::logic_error(st){}
+        virtual void err_msg();
+        virtual ~bad_mean() throw(){}        
+};
+
+inline void bad_mean::err_msg(){
+    std::cout << v1 << ", " << v2 << std::endl;
+}
+
+class bad_hmean : public bad_mean{
 public:
     bad_hmean(double a, double b, const std::string & st = "Bad harmonic") 
-            : v1(a), v2(b), std::logic_error(st){}
+            : bad_mean(a, b, st){}
     void err_msg();
-    ~bad_hmean() throw(){}
+    virtual ~bad_hmean() throw(){}
 };
 
 inline void bad_hmean::err_msg(){
-    std::cout << "hmean (" << v1 << " " << v2 << ")" 
-            << "Invalid arguments, a = -b" << std::endl;
+    std::cout << "hmean " << std::endl; 
+    bad_mean::err_msg();
+    std::cout << "Invalid arguments, a = -b" << std::endl;
 }
 
-class bad_gmean : public std::logic_error{
-private:
-    double v1, v2;
+class bad_gmean : public bad_mean{
 public:
     bad_gmean(double a, double b, const std::string & st = "Bad geometric")
-            : v1(a), v2(b), std::logic_error(st){}
-    const char * err_msg();
-    ~bad_gmean() throw(){}
+            : bad_mean(a, b, st){}
+    inline void err_msg();
+    virtual ~bad_gmean() throw(){}
 };
 
-inline const char * bad_gmean::err_msg(){
-    return "gmean() arguments should be > than 0";
+inline void bad_gmean::err_msg(){
+    std::cout << "gmean " << std::endl;
+    bad_mean::err_msg();
+    std::cout << "arguments should be > than 0";
 }
 
 #endif /* BADHARM_H */
