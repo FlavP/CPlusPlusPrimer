@@ -50,6 +50,18 @@ void Tv::settings() const{
     }
 }
 
+void Tv::change_int(Remote& r){
+    if(state == On){
+    using std::cout;
+    using std::endl;       
+        cout << "The state of the remote is: "
+                << (r.isint == r.NORMAL ? "normal" : "interactive") << endl;
+        r.isint = (r.isint == r.NORMAL) ? r.INTERACTIVE : r.NORMAL;
+        cout << "Now the state of the remote is: "
+                << (r.isint == r.NORMAL ? "normal" : "interactive") << endl;
+    }
+}
+
 void Remote::set_chan(Tv& t, int c){
     t.channel = c;
 }

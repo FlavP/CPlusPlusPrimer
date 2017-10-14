@@ -10,7 +10,7 @@
  *
  * Created on October 10, 2017, 12:47 PM
  */
-
+#include <iostream>
 #ifndef CH15TV_H
 #define CH15TV_H
 
@@ -21,10 +21,13 @@ public:
     enum {On, Off};
     enum {MinVol, MaxVol = 20};
     enum {Antenna, Cable};
-    enum {TV, DVD};    
+    enum {TV, DVD};
+    enum {NORMAL, INTERACTIVE};    
 private:
     int mode;
+    int isint;
 public:
+    friend Tv;
     Remote(int m = TV) : mode(m) {}
     bool volup(Tv & t);
     bool voldown(Tv & t);
@@ -33,13 +36,16 @@ public:
     void chandown(Tv & t);
     void set_mode(Tv & t);
     void set_intput(Tv & t);
+    void see_mode(Tv & t);
     void set_chan(Tv & t, int c);
+    void set_int(){isint = (isint == NORMAL) ? INTERACTIVE : NORMAL;}
 };
 
 
 class Tv
 {
 public:
+    friend Remote;
     enum {On, Off};
     enum {MinVol, MaxVol = 20};
     enum {Antenna, Cable};
@@ -53,6 +59,7 @@ public:
     bool voldown();
     bool channup();
     bool chandown();
+    void change_int(Remote & r);
     void set_mode() {mode = (mode == Antenna) ? Cable : Antenna;}
     void set_input() {input = (input == TV) ? DVD : TV;}
     void settings() const;

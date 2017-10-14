@@ -39,6 +39,7 @@ int main() {
     Tv sams2(Tv::On);
     sams2.set_mode();
     smart.set_chan(sams2, 23);
+    sams2.change_int(smart);
     sams2.settings();
     return 0;
 }
