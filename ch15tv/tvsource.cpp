@@ -49,3 +49,7 @@ void Tv::settings() const{
         cout << "Input: " << (input == TV ? "TV" : "DVD") << endl;
     }
 }
+
+void Remote::set_chan(Tv& t, int c){
+    t.channel = c;
+}
