@@ -37,10 +37,12 @@ int main() {
                     <<"is: " << z << endl;
             cout << "Enter additional two numbers or q to <quit>: " << endl;
         }catch(bad_hmean & w1){
+            w1.what();
             w1.err_msg();
             cout << "Not good. Try again\n";
             continue;
         }catch(bad_gmean & w2){
+            w2.what();
             cout << w2.err_msg();
             cout << "That's it.\n";
             break;

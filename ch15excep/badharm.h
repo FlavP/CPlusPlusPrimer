@@ -14,13 +14,18 @@
 #ifndef BADHARM_H
 #define BADHARM_H
 #include <iostream>
+#include <string>
+#include <stdexcept>
 
-class bad_hmean{
+
+class bad_hmean : public std::logic_error{
 private:
     double v1, v2;
 public:
-    bad_hmean(double a, double b) : v1(a), v2(b){}
+    bad_hmean(double a, double b, const std::string & st = "Bad harmonic") 
+            : v1(a), v2(b), std::logic_error(st){}
     void err_msg();
+    ~bad_hmean() throw(){}
 };
 
 inline void bad_hmean::err_msg(){
@@ -28,12 +33,14 @@ inline void bad_hmean::err_msg(){
             << "Invalid arguments, a = -b" << std::endl;
 }
 
-class bad_gmean{
+class bad_gmean : public std::logic_error{
 private:
     double v1, v2;
 public:
-    bad_gmean(double a, double b) : v1(a), v2(b){}
+    bad_gmean(double a, double b, const std::string & st = "Bad geometric")
+            : v1(a), v2(b), std::logic_error(st){}
     const char * err_msg();
+    ~bad_gmean() throw(){}
 };
 
 inline const char * bad_gmean::err_msg(){
