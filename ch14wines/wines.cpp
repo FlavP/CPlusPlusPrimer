@@ -9,13 +9,14 @@ Wine::Wine(const char* l, int y){
 Wine::Wine(const char* l, int y, const int yr[], const int bot[]){    
     label = l;
     numofyears = y;
-    int i;
-//    years = (yr, y);
-//    bottles = (bot, y);
+    ArrayInt auxwine = (yr, y);
+    ArrayInt auxbot = (bot, y);
+    years = auxwine;
+    bottles = auxbot;
 }
 
 void Wine::show() const{
     int i;
     std::cout << "The wine is: " << label << std::endl;
-//    std::cout << "And we have: " << bottles << " bottles\n";
+    std::cout << "And we have: " << bottles[0] << " bottles\n";
 }
