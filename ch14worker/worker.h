@@ -80,7 +80,9 @@ public:
     SingingWaiter(const Waiter & wt, int v = 0) : 
     Worker(wt), Waiter(wt), Singer(wt, v) {}
     SingingWaiter(const Singer & sg, int p = 0) : 
-    Worker(sg), Waiter(sg, p), Singer(sg) {}    
+    Worker(sg), Waiter(sg, p), Singer(sg) {}   
+    void Set();
+    void Show() const;
 };
 #endif /* WORKER_H */
 
