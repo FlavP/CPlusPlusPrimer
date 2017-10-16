@@ -21,12 +21,8 @@ int main() {
     int b[YRS] = {48, 60, 72};
     valarray <int> abla(b, YRS);
     valarray <int> blabla;
-    //blabla = abla;
-    //abla = b;
-    cout << blabla[0] << endl;
     Wine w1("Cioco the locco", YRS, y, b);
     w1.show();
-    //cout << w1.bottles.sum();
     return 0;
 }
 

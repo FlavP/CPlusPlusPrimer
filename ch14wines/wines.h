@@ -23,7 +23,11 @@ public:
     ArrayInt bottles;
 //    class Pair{
 //    typedef Pair<ArrayInt, ArrayInt> PairArray;
-//    
+//    private:
+//        PairArray botandyrs;
+//    public:
+//        Pair(int y, const int yr[], const int bot[]);
+//        void sharewis(PairArray);
 //    };
     Wine(const char * l, int y, const int yr[], const int bot[]);
     Wine(const char * l, int y = 1);
