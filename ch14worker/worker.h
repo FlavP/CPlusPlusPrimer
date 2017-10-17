@@ -20,7 +20,7 @@ class Worker{
 private:
     std::string fullname;
     long id;
-private:
+protected:
     virtual void Data() const;
     virtual void Get();
 public:
@@ -41,7 +41,7 @@ public:
     Waiter() : Worker(), panache(0){}
     Waiter(const std::string & s, long n, int p = 0) : 
     Worker(s, n), panache(p){}
-    Worker(const Worker & wk, int p = 0) :
+    Waiter(const Worker & wk, int p = 0) :
     Worker(wk), panache(p){}
     void Set();
     void Show() const;
