@@ -53,7 +53,6 @@ char * Singer::pv[Singer::Vtypes] = {"other", "alto", "contrabalto",
 "soprano", "bass", "baritone", "tenor"};
 
 void Singer::Set(){
-    cout << "Category: singer\n";
     Worker::Get();
     Get();
 }
