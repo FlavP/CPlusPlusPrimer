@@ -21,7 +21,7 @@ int main() {
     int b[YRS] = {48, 60, 72};
     valarray <int> abla(b, YRS);
     valarray <int> blabla;
-    Wine w1("Cioco the locco", YRS, y, b);
+    Wine w1("Ciocothe locco", YRS, y, b);
     w1.show();
     return 0;
 }
