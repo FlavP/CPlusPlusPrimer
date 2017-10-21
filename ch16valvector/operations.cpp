@@ -40,7 +40,7 @@ int main() {
     }
     return 0;
 }
- */
+ 
 
 //Operations with slice
     const int SIZE = 12;
@@ -49,8 +49,6 @@ int main() {
     
 int main(){
     vint twlv(SIZE);
-    string st = "otto";
-    if(st == st.reverse_iterator)
     int i;
     for(i = 0; i < SIZE; ++i)
         twlv[i] = rand() % 10;
@@ -84,4 +82,39 @@ void show(const vint & v, int cols){
             cout << ' ';
     }
 }
+*/
 
+//Try a palindrome
+
+void toLower(string & st);
+
+int main(){
+    string s1;
+    string s2;
+    cout << "Enter a string:\n";
+    getline(cin, s1);
+    int size = s1.size();
+    int i;
+    for(i = 0; i < size; i++){
+        s2.push_back(s1[size - 1 - i]);
+    }
+    
+    toLower(s1);
+    toLower(s2);
+    cout << "String s1 is: " << s1 << endl;
+    cout << "String s2 is: " << s2 << endl;
+    if(s1 == s2)
+        cout << "It's a palindrome!!!";
+    else
+        cout << "Not quite";
+    return 0;
+}
+
+void toLower(string & st){
+    int i;
+    for(i = 0; i < st.size(); i++){
+        st[i] = tolower(st[i]);
+        if(ispunct(st[i]) || isspace(st[i]))
+            st.erase(st.begin() + i);
+    }
+}
