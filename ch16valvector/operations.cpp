@@ -10,6 +10,8 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <set>
+#include <iterator>
 
 using namespace std;
 
@@ -82,7 +84,7 @@ void show(const vint & v, int cols){
             cout << ' ';
     }
 }
-*/
+
 
 //Try a palindrome
 
@@ -118,3 +120,67 @@ void toLower(string & st){
             st.erase(st.begin() + i);
     }
 }
+  
+int reduce(long ar[], int n);
+const int LEN = 11;
+
+int main(){
+    long ar[LEN] = {1L, 1L, 2L, 5L, 4L, 5L, 2L, 5L, 5L, 9L, 3L};
+    int longit = reduce(ar, LEN);
+    cout << "Number of unique sorted elements is: " << longit << endl;
+    return 0;
+}
+
+int reduce(long ar[], int n){
+    set<long> ra(ar, ar + n);
+    return ra.size();
+}
+ 
+const int LEN = 11;
+template<typename T>
+int reduce(T ar[], int n);
+
+int main(){
+    long ar[LEN] = {1L, 1L, 2L, 5L, 4L, 5L, 2L, 5L, 5L, 9L, 3L};
+    string s1[LEN] = {"buffon", "thinkers", "for", "heavy", "can", "for"
+    "any", "food", "elegant", "for"};
+    int longar = reduce(ar, LEN);
+    int longst = reduce(s1, LEN);
+    cout << "Number of unique sorted elements in long array is: " 
+            << longar << endl;
+    cout << "Number of unique sorted elements in string is: " 
+            << longst << endl;
+    return 0;
+}
+
+template<typename T>
+int reduce(T ar[], int n){
+    set<T> ra(ar, ar + n);
+    return ra.size();
+}
+  
+
+vector<int> Lotto(int hwmny, int winners);
+
+int main(){
+    vector<int> winnum = Lotto(51, 6);
+    ostream_iterator<int, char> out(cout, " ");
+    copy(winnum.begin(), winnum.end(), out);
+    return 0;
+}
+
+vector<int> Lotto(int hwmny, int winners){
+    vector<int> v1;
+    int i;
+    for(i = 0; i < hwmny; i++)
+        v1.push_back(i + 1);
+    random_shuffle(v1.begin(), v1.end());
+    random_shuffle(v1.begin(), v1.end());
+    random_shuffle(v1.begin(), v1.end());
+    random_shuffle(v1.begin(), v1.end());
+    vector<int> v2;    
+    v2 = v1;
+    v2.erase(v2.begin() + winners, v2.end());
+    return v2;
+}
+
