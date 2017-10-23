@@ -11,6 +11,7 @@
  * Created on October 23, 2017, 2:10 PM
  */
 
+#include <iostream>
 #include <cstdlib>
 #include <fstream>
 #include <string>
@@ -54,10 +55,34 @@ const char * file = "guests.txt";
 using namespace std;
 int main(){
     char ch;
-    return 0;
-    ifstream is;
-    is.open(file);
-    if(is.is_open()){
-        //cout << ""
+    ifstream fis;
+    fis.open(file);
+    if(fis.is_open()){
+        cout << "Here are the contents of the file "
+                << file << endl;
+        while(fis.get(ch))
+            cout << ch;
+        fis.close();
     }
+    //add new names
+    ofstream fout(file, ios::out | ios::app);
+    if(!fout.is_open()){
+        cerr << "Could not open the file " << file << endl;
+        exit(EXIT_FAILURE);
+    }
+    cout << "Enter name of guest (blank to quit):\n";
+    string name;
+    while(getline(cin, name) && name.size() > 0)
+        fout << name << endl;
+    fout.close();
+    //show new file
+    fis.clear();
+    fis.open(file);
+    if(fis.is_open()){
+        cout << "New content: " << endl;
+        while(fis.get(ch))
+            cout << ch;
+        fis.close();
+    }
+    return 0;
 }
