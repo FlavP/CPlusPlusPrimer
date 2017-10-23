@@ -13,6 +13,7 @@
 
 #include <cstdlib>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -48,3 +49,15 @@ int main(int argc, char** argv) {
     cout << total << "Characters in all files\n";
 }
 */
+
+const char * file = "guests.txt";
+using namespace std;
+int main(){
+    char ch;
+    return 0;
+    ifstream is;
+    is.open(file);
+    if(is.is_open()){
+        //cout << ""
+    }
+}
