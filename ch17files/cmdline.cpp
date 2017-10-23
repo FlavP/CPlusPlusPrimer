@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -49,7 +50,7 @@ int main(int argc, char** argv) {
     }
     cout << total << "Characters in all files\n";
 }
-*/
+
 
 const char * file = "guests.txt";
 using namespace std;
@@ -83,6 +84,66 @@ int main(){
         while(fis.get(ch))
             cout << ch;
         fis.close();
+    }
+    return 0;
+}
+*/
+
+inline void cutline(){while(std::cin.get() != '\n') continue;}
+
+struct planet{
+    char name[20];
+    long population;
+    double g;
+};
+
+const char * file = "planets.dat";
+
+int main(){
+    using namespace std;
+    planet pl;
+    cout << fixed << right;
+    ifstream fin;
+    fin.open(file, 
+    ios_base::in | ios_base::binary);
+    if(fin.is_open()){
+        cout << "Here are the current input of the file:\n";
+        while(fin.read( (char *) &pl, sizeof(pl))){
+            cout << setw(20) << pl.name << ' '
+                    << setprecision(0) << setw(12) << pl.population << ' '
+                    << setprecision(2) << setw(6) << pl.g << endl;
+        }
+        fin.close();
+    }
+    ofstream fout;
+    fout.open(file, 
+    ios_base::out | ios_base::app | ios_base::binary);
+    if(!fout.is_open()){
+        cout << "There was an error opening" << file << endl;
+        exit(EXIT_FAILURE);
+    }
+    while(pl.name[0] != '\0'){
+        cutline();
+        cout << "Enter planet population: ";
+        cin >> pl.population;
+        cout << "Enter planet g force: ";
+        cin >> pl.g;
+        cutline();
+        fout.write((char *) & pl, sizeof pl);
+        cout << "Enter planet name (blank to quit)\n";
+        cin.get(pl.name, 20);
+    }
+    fout.close();
+    fin.clear();
+    fin.open(file, ios_base::in | ios_base::binary);
+    if(fin.is_open()){
+        cout << "Here are the new contents: ";
+        while(fin.read((char *) &pl, sizeof(pl))){
+            cout << setw(20) << pl.name << ' '
+                    << setprecision(0) << setw(12) << pl.population << ' '
+                    << setprecision(2) << setw(6) << pl.g << endl;
+        }
+        fin.close();
     }
     return 0;
 }
