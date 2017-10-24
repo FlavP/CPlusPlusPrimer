@@ -38,7 +38,7 @@ int main(){
     return 0;
 }
 
-*/
+
 
 int main(){
     const char * filename;
@@ -65,5 +65,42 @@ int main(){
         while(infile.get(input))
                 cout << input;
     }
+    return 0;
+}
+*/
+
+const int LIM = 10;
+
+int main(){
+    char filecopy[LIM];
+    char filepaste[LIM];
+    char ch;
+    ifstream infile;
+    cout << "Enter the name of the file you want to copy from: ";
+    cin >> filecopy;
+    infile.open(filecopy);
+    if(!infile.is_open()){
+        cerr << "Could not open the file: " << filecopy << endl;
+        exit(EXIT_FAILURE);
+    }
+    ofstream outfile;
+    cout << "Enter the name of the file you want to copy into: ";
+    cin >> filepaste;
+    if(!outfile.is_open()){
+        cerr << "Could not open the file: " << filepaste << endl;
+        exit(EXIT_FAILURE);
+    }
+    while(infile.get(ch))
+        outfile << ch;
+    infile.close();
+    outfile.close();
+    cout << "\nLet's see what we did\n";
+    infile.open(filepaste);
+    if(!infile.is_open()){
+        cerr << "Could not open the file: " << filepaste << endl;
+        exit(EXIT_FAILURE);
+    }   
+    while(infile.get(ch))
+        cout << ch;
     return 0;
 }
