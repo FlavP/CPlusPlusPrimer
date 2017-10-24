@@ -87,7 +87,6 @@ int main(){
     }
     return 0;
 }
-*/
 
 inline void cutline(){while(std::cin.get() != '\n') continue;}
 
@@ -137,7 +136,7 @@ int main(){
     fin.clear();
     fin.open(file, ios_base::in | ios_base::binary);
     if(fin.is_open()){
-        cout << "Here are the new contents: ";
+        cout << "Here are the new contents:\n";
         while(fin.read((char *) &pl, sizeof(pl))){
             cout << setw(20) << pl.name << ' '
                     << setprecision(0) << setw(12) << pl.population << ' '
@@ -145,5 +144,85 @@ int main(){
         }
         fin.close();
     }
+    return 0;
+}
+*/
+//planets.dat has to exist and have recordings in it for the next part
+const int LIM = 20;
+struct planet{
+    char name[LIM];
+    long population;
+    double g;
+};
+using namespace std;
+const char * file = "planets.dat";
+inline void clearline(){while(cin.get() != '\n') continue;}
+
+int main(){
+    planet pl;
+    cout << fixed;
+    fstream finout;
+    finout.open(file, ios_base::in | ios_base::out | ios_base::binary);
+    int ct = 0;
+    if(finout.is_open()){
+        finout.seekg(0);
+        cout << "Current contents of " << file << " are:\n";
+        while(finout.read((char *) &pl, sizeof pl))
+            cout << ct++ << ": " << setw(LIM) << pl.name << ": "
+                    << setprecision(0) << setw(12) << pl.population
+                    << setprecision(2) << setw(6) << pl.g << endl;
+    if(finout.eof()){
+        finout.clear();
+    }else{
+        cerr << "Error in reading " << file << endl;
+        exit(EXIT_FAILURE);
+        }
+    } else {
+        cerr << "Could not open " << file << endl;
+        exit(EXIT_FAILURE);
+    }
+    //change a record
+    cout << "Enter a record number you want to edit: ";
+    long rec;
+    cin >> rec;
+    clearline();
+    if(rec < 0 || rec >= ct){
+        cerr << "Invalid record number -- exit\n";
+        exit(EXIT_FAILURE);
+    }
+    streampos place = rec * sizeof pl;
+    finout.seekg(place);
+    if(finout.fail()){
+        cerr << "Error in attempted seek\n";
+        exit(EXIT_FAILURE);
+    }
+    finout.read((char *) &pl, sizeof pl);
+    cout << "You selected:\n";
+    cout << rec << ": " << setw(LIM) << pl.name << ": "
+                    << setprecision(0) << setw(12) << pl.population
+                    << setprecision(2) << setw(6) << pl.g << endl;
+    if(finout.eof())
+        finout.clear();
+    cout << "Enter planet name: ";
+    cin.get(pl.name, LIM);
+    cout << "\nEnter planet population: ";
+    cin >> pl.population;
+    cout << "\nEnter planet gforce: ";
+    cin >> pl.g;
+    finout.seekp(place);
+    finout.write((char *) &pl, sizeof pl) << flush;
+    if(finout.fail()){
+        cerr << "Error in attempted writing to file\n";
+        exit(EXIT_FAILURE);
+    }
+    // show revised file
+    ct = 0;
+    finout.seekg(0);
+    cout << "Here is the revised file:\n";
+    while(finout.read((char *) &pl, sizeof pl))
+            cout << ct++ << ": " << setw(LIM) << pl.name << ": "
+                    << setprecision(0) << setw(12) << pl.population
+                    << setprecision(2) << setw(6) << pl.g << endl;
+    finout.close();
     return 0;
 }
