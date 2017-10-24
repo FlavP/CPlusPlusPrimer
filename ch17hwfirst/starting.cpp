@@ -41,9 +41,29 @@ int main(){
 */
 
 int main(){
-    char filename[10];
-    ifstream infile;    
+    const char * filename;
+    ofstream outfile; 
+    char ch;
     filename = "lgi.txt";
+    outfile.open(filename);
+    if(!outfile.is_open()){
+        cout << "Could not open the file: " << filename << endl;
+        exit(EXIT_FAILURE);
+    }
+    cout << "Gimme output: ";
+    while(cin.get(ch)){
+        if(outfile.eof())
+            break;
+        outfile << ch;    
+    }
+    outfile.close();    
+    char input;
+    ifstream infile;
     infile.open(filename);
+    cout << "\nWe are reading the file now: \n";
+    if(infile.is_open()){
+        while(infile.get(input))
+                cout << input;
+    }
     return 0;
 }
