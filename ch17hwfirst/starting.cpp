@@ -67,7 +67,7 @@ int main(){
     }
     return 0;
 }
-*/
+
 
 const int LIM = 10;
 
@@ -86,6 +86,7 @@ int main(){
     ofstream outfile;
     cout << "Enter the name of the file you want to copy into: ";
     cin >> filepaste;
+    outfile.open(filepaste);
     if(!outfile.is_open()){
         cerr << "Could not open the file: " << filepaste << endl;
         exit(EXIT_FAILURE);
@@ -102,5 +103,42 @@ int main(){
     }   
     while(infile.get(ch))
         cout << ch;
+    return 0;
+}
+ 
+ */
+
+const int LIM = 80;
+
+int main(){
+    const char *copyone = "file1.txt";
+    const char *copytwo = "file2.txt";
+    const char *pasteone = "out.txt";
+    string line1, line2;
+    char ch;
+    char ch1[LIM], ch2[LIM];
+    ifstream inone;
+    ifstream intwo;
+    inone.open(copyone);
+    intwo.open(copytwo);
+    if(!inone.is_open() || !intwo.is_open()){
+        cerr << "Could not open input files\n";
+        exit(EXIT_FAILURE);
+    }
+    ofstream outfile;
+    outfile.open(pasteone);
+    if(!outfile.is_open()){
+        cerr << "Could not open output file\n";
+        exit(EXIT_FAILURE);   
+    }
+    do{        
+        inone.get(ch1, LIM, '\n');
+        intwo.get(ch2, LIM, '\n');
+        outfile << ch1 << '\t' << ch2;
+        outfile << endl;
+    }while(inone.get(ch) && intwo.get(ch));
+    inone.close();
+    intwo.close();
+    outfile.close();
     return 0;
 }
