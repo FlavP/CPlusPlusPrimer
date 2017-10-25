@@ -160,17 +160,29 @@ int main(){
     
     fstream matsfile, patsfile, matsandpats;
     
-    matsfile.open("mats.dat", ios_base::binary);
+    matsfile.open("mats.dat", ios_base::out | ios_base::binary);
+    if(!matsfile.is_open()){
+        cerr << "Could not open mats file\n";
+        exit(EXIT_FAILURE);
+    }
     ostream_iterator<string> outmat(matsfile);
     copy(matsie.begin(), matsie.end(), outmat);
     
-    patsfile.open("pats.dat", ios_base::binary);
+    patsfile.open("pats.dat", ios_base::out | ios_base::binary);
+    if(!patsfile.is_open()){
+        cerr << "Could not open pats file\n";
+        exit(EXIT_FAILURE);
+    }    
     ostream_iterator<string> outpat(patsfile);
     ostream_iterator<string> outandout(matsandpats);
     copy(patsie.begin(), patsie.end(), outpat);
     set_union(matsie.begin(), matsie.end(), patsie.begin(), patsie.end(),
             insert_iterator<set<string> >(matandpat, matandpat.begin()));
-    matsandpats.open("matandpat.dat", ios_base::binary);
+    matsandpats.open("matandpat.dat", ios_base::out | ios_base::binary);
+    if(!matsandpats.is_open()){
+        cerr << "Could not open the combined file\n";
+        exit(EXIT_FAILURE);
+    }    
     copy(matandpat.begin(), matandpat.end(), outandout);
     matsfile.close();
     patsfile.close();

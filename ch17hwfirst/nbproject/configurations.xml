@@ -27,6 +27,9 @@
     </logicalFolder>
     <itemPath>file1.txt</itemPath>
     <itemPath>file2.txt</itemPath>
+    <itemPath>matandpat.dat</itemPath>
+    <itemPath>mats.dat</itemPath>
+    <itemPath>pats.dat</itemPath>
     <itemPath>yogo.txt</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -45,6 +48,12 @@
       <item path="file1.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="file2.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="matandpat.dat" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="mats.dat" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pats.dat" ex="false" tool="3" flavor2="0">
       </item>
       <item path="starting.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -75,6 +84,12 @@
       <item path="file1.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="file2.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="matandpat.dat" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="mats.dat" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pats.dat" ex="false" tool="3" flavor2="0">
       </item>
       <item path="starting.cpp" ex="false" tool="1" flavor2="0">
       </item>
