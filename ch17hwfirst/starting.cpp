@@ -17,6 +17,10 @@
 #include <fstream>
 #include <istream>
 #include <ostream>
+#include <set>
+#include <iterator>
+#include <algorithm>
+#include <list>
 
 using namespace std;
 
@@ -106,7 +110,7 @@ int main(){
     return 0;
 }
  
- */
+ 
 
 const int LIM = 80;
 
@@ -140,5 +144,36 @@ int main(){
     inone.close();
     intwo.close();
     outfile.close();
+    return 0;
+}
+ */
+
+int main(){
+    string mats[] = {"unu", "doi", "trei", "patru"};
+    string pats[] = {"cinci", "patru", "trei", "sase"};    
+    int sizes1, sizes2;
+    sizes1 = sizeof(mats)/sizeof(mats[0]);
+    sizes2 = sizeof(pats)/sizeof(pats[0]);
+    set<string> matsie(mats, mats + sizes1);
+    set<string> patsie(pats, pats + sizes2);
+    set<string> matandpat;
+    
+    fstream matsfile, patsfile, matsandpats;
+    
+    matsfile.open("mats.dat", ios_base::binary);
+    ostream_iterator<string> outmat(matsfile);
+    copy(matsie.begin(), matsie.end(), outmat);
+    
+    patsfile.open("pats.dat", ios_base::binary);
+    ostream_iterator<string> outpat(patsfile);
+    ostream_iterator<string> outandout(matsandpats);
+    copy(patsie.begin(), patsie.end(), outpat);
+    set_union(matsie.begin(), matsie.end(), patsie.begin(), patsie.end(),
+            insert_iterator<set<string> >(matandpat, matandpat.begin()));
+    matsandpats.open("matandpat.dat", ios_base::binary);
+    copy(matandpat.begin(), matandpat.end(), outandout);
+    matsfile.close();
+    patsfile.close();
+    matsandpats.close();
     return 0;
 }
