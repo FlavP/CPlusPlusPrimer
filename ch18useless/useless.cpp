@@ -219,6 +219,12 @@ int main(){
     cout << "Count of numbers divisible by 3: " << count3 << endl;        
     count13 = count_if(numbers.begin(), numbers.end(), 
             [](int x){return x % 13 == 0;});
-    cout << "Count of numbers divisible by 13: " << count13 << endl;        
+    cout << "Count of numbers divisible by 13: " << count13 << endl;   
+    count3 = count13 = 0;
+    for_each(numbers.begin(), numbers.end(),
+            [&](int x){ count3 += x % 3 == 0; count13 += x % 13 == 0;});
+    cout << endl;
+    cout << "Count of numbers divisible by 3: " << count3 << endl; 
+    cout << "Count of numbers divisible by 13: " << count13 << endl; 
     return 0;
 }
