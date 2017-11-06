@@ -12,6 +12,7 @@
  */
 
 #include <iostream>
+#include <string>
 #include <cstdlib>
 #include <array>
 
@@ -46,7 +47,7 @@ int main() {
     show2(18.0, [](double x) {return 1.8 * x + 32;});
     return 0;
 }
-*/
+
 
 const int Size = 5; 
 template<typename T>
@@ -77,4 +78,27 @@ void sum(array<double, Size> a, T fp){
     for(auto pt = a.begin(); pt != a.end(); pt++){
         fp(*pt);
     }
+}
+ */
+
+//variadic variables
+
+//definition for 0 parameters
+void show_list() {
+    cout << '.';
+}
+
+template<typename T, typename... Args>
+void show_list(T value, Args... args){
+    cout << value << ", ";
+    show_list(args...);
+}
+
+int main(){
+    int n = 14;
+    double x = 2.71828;
+    string mr = "Am mai multe stringuri";
+    show_list(n, x);
+    show_list(x* x, '!', 7, mr);
+    return 0;
 }
